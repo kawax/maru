@@ -19,9 +19,8 @@ class Download extends Component
     public function imageUploaded($image)
     {
         $upload = Image::make(Storage::disk('public')->get($image))->encode('png');
-        $width = $upload->width();
-        $height = $upload->height();
-        $size = min($width, $height);
+
+        $size = min($upload->width(), $upload->height());
 
         $upload->fit($size);
 
@@ -34,7 +33,7 @@ class Download extends Component
 
         $name = Str::before($image, '.');
 
-        $upload->save(Storage::disk('public')->path($name.'.png'), 90, 'png');
+        $upload->save(Storage::disk('public')->path($name.'.png'));
 
         $this->image = $name.'.png';
 

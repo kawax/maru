@@ -27,8 +27,8 @@ Artisan::command('maru:clean', function () {
             return Str::startsWith($file, '.');
         })
         ->each(function ($file) {
-            $data = Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file));
-            if ($data->isBefore(now()->subDay())) {
+            $last = Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file));
+            if ($last->isBefore(now()->subHours(12))) {
                 info('Delete : '.$file);
                 Storage::disk('public')->delete($file);
             }
