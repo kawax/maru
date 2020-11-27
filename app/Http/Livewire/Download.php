@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Livewire\Component;
 
@@ -18,10 +19,11 @@ class Download extends Component
     public function imageUploaded($image)
     {
         $upload = Image::make(Storage::disk('public')->get($image))->encode('png');
-
         $width = $upload->width();
         $height = $upload->height();
         $size = min($width, $height);
+
+        $upload->fit($size);
 
         $circle = Image::canvas($size, $size)
                        ->circle($size, $size / 2, $size / 2, function ($draw) {
@@ -30,9 +32,11 @@ class Download extends Component
 
         $upload->mask($circle, true);
 
-        $upload->save(Storage::disk('public')->path($image));
+        $name = Str::before($image, '.');
 
-        $this->image = $image;
+        $upload->save(Storage::disk('public')->path($name.'.png'), 90, 'png');
+
+        $this->image = $name.'.png';
 
         $this->emit('imageConverted');
     }
