@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1">
-                    <div class="p-6">
+                    <div class="p-6 border-b border-gray-200">
                         <div class="flex items-center">
                             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">1. 画像をアップロード</div>
                         </div>
@@ -23,11 +23,10 @@
                             <div class="mt-2 text-sm text-gray-500">
                                 <livewire:upload/>
                             </div>
-
                         </div>
                     </div>
 
-                    <div class="p-6 border-t">
+                    <div class="p-6">
                         <div class="flex items-center">
                             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">2. 画像をダウンロード</div>
                         </div>
@@ -36,7 +35,6 @@
                             <div class="mt-2 text-sm text-gray-500">
                                 <livewire:download/>
                             </div>
-
                         </div>
                     </div>
                 </div>
