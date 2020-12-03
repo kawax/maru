@@ -1,7 +1,7 @@
 <div>
     @if($image)
         <div class="max-w-sm bg-white rounded border shadow-lg p-6 mb-6">
-            <img src="{{ Storage::disk('public')->url($image) }}">
+            <img src="{{ Storage::disk('public')->url($image) }}" alt="">
         </div>
 
         <x-jet-button wire:click="download">
